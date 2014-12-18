@@ -1,6 +1,6 @@
 
 #' @export
-as.data.frame.ip6 <- as.data.frame.numeric
+as.data.frame.ip6 <- as.data.frame.complex
 
 #' @export
 format.ip6 <- function(x, ...) ip6ToHost(x)
