@@ -1,11 +1,11 @@
 Package: Rip46
 Type: Package
-Title: R utils for IP4 and IP6 addresses
+Title: S3 methods for IP4 and IP6 addresses
 Version: 1.0
 Date: 2014-12-04
 Author: Neal Fultz
 Maintainer: Neal Fultz <njf@zestfinance.com>
-Description: This package provides utility functions for working with ip addresses. TODO: ip6
+Description: This package provides utility functions for working with IPv4 and IPv6 addresses.
 License: Copyright Zest Finance
 Imports: Rcpp (>= 0.11.2)
 LinkingTo: Rcpp
