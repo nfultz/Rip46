@@ -95,21 +95,6 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// mySqlToIp6
-ComplexVector mySqlToIp6(NumericVector x);
-RcppExport SEXP Rip46_mySqlToIp6(SEXP xSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        ComplexVector __result = mySqlToIp6(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
 // hostToIp6
 ComplexVector hostToIp6(CharacterVector x);
 RcppExport SEXP Rip46_hostToIp6(SEXP xSEXP) {

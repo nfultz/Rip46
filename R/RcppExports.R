@@ -3,14 +3,15 @@
 
 #' Convert MySQL ATONs to Rip4
 #'
-#' When you quert a MySQL db, you should call INET_ATON(ip_field) to convert to an
-#' (unsigned) int.
+#' When you query a MySQL db, you should use INET_ATON(ip_field) to convert a string IP 
+#' to an (unsigned) int.
 #' 
 #' Unfortunately, the RMySQL driver will convert these to doubles because not all
 #' unsigned ints are representable as ints. Because doubles get normalized, we 
-#' can't apply masks directly.
+#' can't mask subnets directly.
 #'  
-#' Instead, we can use signed integers.  
+#' Instead, we can map the top half of unsigned integers to the negative half of signed
+#' ints using 2s-complement.  
 #'
 #' @param str input numeric vector
 #' @return integer format IP addresses
@@ -52,25 +53,6 @@ classB <- function(x) {
 #' @export
 classC <- function(x) {
     .Call('Rip46_classC', PACKAGE = 'Rip46', x)
-}
-
-#' Convert MySQL ATONs to Rip4
-#'
-#' When you quert a MySQL db, you should call INET_ATON(ip_field) to convert to an
-#' (unsigned) int.
-#' 
-#' Unfortunately, the RMySQL driver will convert these to doubles because not all
-#' unsigned ints are representable as ints. Because doubles get normalized, we 
-#' can't apply masks directly.
-#'  
-#' Instead, we can use signed integers.  
-#'
-#' @param str input numeric vector
-#' @return integer format IP addresses
-#'
-#' @export
-mySqlToIp6 <- function(x) {
-    .Call('Rip46_mySqlToIp6', PACKAGE = 'Rip46', x)
 }
 
 #' Convert presentation IPv6 addresses to Rip6
