@@ -5,7 +5,10 @@ Version: 1.0
 Date: 2014-12-04
 Author: Neal Fultz
 Maintainer: Neal Fultz <njf@zestfinance.com>
-Description: This package provides utility functions and S3 classes for IPv4 and IPv6 addresses.
+Copyright: ZestFinance Inc 2015
+URL: https://github.com/nfultz/Rip46
+Description: Utility functions and S3 classes for IPv4 and IPv6 addresses, including Rcpp wrappers
+             to inet_pton.
 License:GPL-3
 Imports: Rcpp (>= 0.11.2), 
          methods
