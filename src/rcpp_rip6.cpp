@@ -9,9 +9,9 @@ union u_double
     unsigned char data[sizeof(double)];
 };
 
-//' Convert presentation IPv6 addresses to Rip6
-//' 
-//' @export
+// Convert presentation IPv6 addresses to Rip6
+// 
+//
 // [[Rcpp::export]]
 ComplexVector hostToIp6(CharacterVector x) {
   
@@ -22,10 +22,13 @@ ComplexVector hostToIp6(CharacterVector x) {
   Rcomplex rc ;
   
   for(int i = 0; i < x.length(); i++){
-    inet_pton(AF_INET6, x[i], buf[0].data);
-    rc.r = buf[0].dbl;
-    rc.i = buf[1].dbl;   
-    ret[i] = rc; 
+    if( inet_pton(AF_INET6, x[i], buf[0].data) == 1) {
+      rc.r = buf[0].dbl;
+      rc.i = buf[1].dbl;
+    } 
+    else 
+      rc.r = rc.i = NA_REAL;
+    ret[i] = rc;
   }
   
   ret.attr("class") = "ip6";
@@ -33,9 +36,9 @@ ComplexVector hostToIp6(CharacterVector x) {
   
 } 
 
-//' Convert Rip6 to presentation
-//' 
-//' @export
+// Convert Rip6 to presentation
+// 
+// 
 // [[Rcpp::export]]
 CharacterVector ip6ToHost(ComplexVector x) {
 
@@ -48,10 +51,14 @@ CharacterVector ip6ToHost(ComplexVector x) {
   struct in_addr s;
   for(int i = 0; i < x.length(); i++){
     rc = x(i);
-    buf[0].dbl = rc.r;
-    buf[1].dbl = rc.i;
-    inet_ntop(AF_INET6, buf[0].data, str, INET6_ADDRSTRLEN);
-    ret(i) = str;
+    if(R_IsNA(rc.r)) {ret[i] = NA_STRING;} 
+    else {
+      buf[0].dbl = rc.r;
+      buf[1].dbl = rc.i;
+      if(inet_ntop(AF_INET6, buf[0].data, str, INET6_ADDRSTRLEN) != NULL)
+        ret[i] = str; 
+      else ret[i] = NA_STRING;
+    }
   }
   return ret;
 }

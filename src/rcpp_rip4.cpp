@@ -3,6 +3,13 @@
 #include <netinet/in.h>
 using namespace Rcpp;
 
+union un_int
+{
+    int i;
+    unsigned int ui;
+    unsigned char data[sizeof(int)];
+};
+
 //' Convert MySQL ATONs to Rip4
 //'
 //' When you query a MySQL db, you should use INET_ATON(ip_field) to convert a string IP 
@@ -15,49 +22,71 @@ using namespace Rcpp;
 //' Instead, we can map the top half of unsigned integers to the negative half of signed
 //' ints using 2s-complement.  
 //'
-//' @param str input numeric vector
+//' @param x input numeric vector
 //' @return integer format IP addresses
 //'
-//' @export
+//'
 // [[Rcpp::export]]
 IntegerVector mySqlToIp4(NumericVector x) {
-  long u = 1L << 32;
+  unsigned int u = 1L << 32;
    IntegerVector ret(x.length());
    for(int i = 0; i < x.length(); i++) {
-     long xi = (long) x[i];
-     ret[i] = (int) (xi < u ?  xi : xi - u);
+     if(R_IsNA(x[i])){
+       ret[i] = NA_INTEGER;
+     }
+     else {
+       unsigned int xi = (unsigned int) x[i];
+       ret[i] = (int) htonl(xi < u ?  xi : xi - u);
+     }
    }
    ret.attr("class") = "ip4";
    return ret;
 }
 
-//' Convert dotted-quad IP addresses to Rip4
-//' 
-//' @export
+// Convert dotted-quad IP addresses to Rip4
+// 
 // [[Rcpp::export]]
 IntegerVector hostToIp4(CharacterVector x) {
-   IntegerVector ret(x.length());
+  IntegerVector ret(x.length());
   
-   for(int i = 0; i < x.length(); i++)
-     ret[i] = (int) ntohl(inet_addr(x[i]));
+  un_int buf;
   
-   ret.attr("class") = "ip4";
-   return ret;
+  
+  for(int i = 0; i < x.length(); i++){
+    if(x[i] == NA_STRING) 
+      ret[i] = NA_INTEGER;
+    else if(inet_pton(AF_INET, x[i], buf.data) == 1)
+      ret[i] = buf.i; 
+    else ret[i] = NA_INTEGER;  
+  }
+  
+  ret.attr("class") = "ip4";
+  return ret;   
   
 } 
 
-//' Convert Rip4 to dotted-quad IP addresses
-//' 
-//' @export
+// Convert Rip4 to dotted-quad IP addresses
+// 
 // [[Rcpp::export]]
 CharacterVector ip4ToHost(IntegerVector x) {
+  char str[INET_ADDRSTRLEN];
+  un_int buf;
+  
   CharacterVector ret(x.length());
+
   struct in_addr s;
   for(int i = 0; i < x.length(); i++){
-    s.s_addr = htonl((unsigned int) x[i]);
-    ret(i) = inet_ntoa(s);
+    buf.i = x[i];
+    if(buf.i == NA_INTEGER) 
+      ret[i] = NA_STRING;
+    else if( inet_ntop(AF_INET, buf.data, str, INET_ADDRSTRLEN) != NULL)
+      ret[i] =  str; 
+    else 
+      ret[i] = NA_STRING;
   }
   return ret;
+
+
 }
 
 
@@ -75,22 +104,23 @@ IntegerVector applyMask(IntegerVector x,  int mask) {
 //' Extract Networks from IP addresses
 //'
 //' @rdname network-mask
+//' @param x an \code{ip4} object
 //' @export
 // [[Rcpp::export]]
 IntegerVector classA(IntegerVector x) {
-     return applyMask(x, 0xff000000);
+     return applyMask(x, 0x000000ff);
 }
 
 //' @rdname network-mask 
 //' @export
 // [[Rcpp::export]]
 IntegerVector classB(IntegerVector x) {
-     return applyMask(x, 0xffff0000);
+     return applyMask(x, 0x0000ffff);
 }
 
 //' @rdname network-mask
 //' @export
 // [[Rcpp::export]]
 IntegerVector classC(IntegerVector x) {
-     return applyMask(x, 0xffffff00);
+     return applyMask(x, 0x00ffffff);
 }

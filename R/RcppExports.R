@@ -13,24 +13,18 @@
 #' Instead, we can map the top half of unsigned integers to the negative half of signed
 #' ints using 2s-complement.  
 #'
-#' @param str input numeric vector
+#' @param x input numeric vector
 #' @return integer format IP addresses
 #'
-#' @export
+#'
 mySqlToIp4 <- function(x) {
     .Call('Rip46_mySqlToIp4', PACKAGE = 'Rip46', x)
 }
 
-#' Convert dotted-quad IP addresses to Rip4
-#' 
-#' @export
 hostToIp4 <- function(x) {
     .Call('Rip46_hostToIp4', PACKAGE = 'Rip46', x)
 }
 
-#' Convert Rip4 to dotted-quad IP addresses
-#' 
-#' @export
 ip4ToHost <- function(x) {
     .Call('Rip46_ip4ToHost', PACKAGE = 'Rip46', x)
 }
@@ -38,6 +32,7 @@ ip4ToHost <- function(x) {
 #' Extract Networks from IP addresses
 #'
 #' @rdname network-mask
+#' @param x an \code{ip4} object
 #' @export
 classA <- function(x) {
     .Call('Rip46_classA', PACKAGE = 'Rip46', x)
@@ -55,16 +50,10 @@ classC <- function(x) {
     .Call('Rip46_classC', PACKAGE = 'Rip46', x)
 }
 
-#' Convert presentation IPv6 addresses to Rip6
-#' 
-#' @export
 hostToIp6 <- function(x) {
     .Call('Rip46_hostToIp6', PACKAGE = 'Rip46', x)
 }
 
-#' Convert Rip6 to presentation
-#' 
-#' @export
 ip6ToHost <- function(x) {
     .Call('Rip46_ip6ToHost', PACKAGE = 'Rip46', x)
 }
