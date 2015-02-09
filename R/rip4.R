@@ -4,6 +4,7 @@
 #'
 #' @name ip4
 #' @param x An object to be converted.
+#' @import methods
 NULL 
 
 #' @rdname ip4
