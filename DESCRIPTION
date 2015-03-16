@@ -1,7 +1,7 @@
 Package: Rip46
 Type: Package
 Title: Utils for IP4 and IP6 addresses
-Version: 1.0
+Version: 1.0.1
 Date: 2014-12-04
 Author: Neal Fultz
 Maintainer: Neal Fultz <njf@zestfinance.com>

@@ -50,6 +50,22 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// mask
+IntegerVector mask(IntegerVector x, int m);
+RcppExport SEXP Rip46_mask(SEXP xSEXP, SEXP mSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< int >::type m(mSEXP );
+        IntegerVector __result = mask(x, m);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // classA
 IntegerVector classA(IntegerVector x);
 RcppExport SEXP Rip46_classA(SEXP xSEXP) {

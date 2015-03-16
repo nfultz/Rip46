@@ -33,6 +33,13 @@ ip4ToHost <- function(x) {
 #'
 #' @rdname network-mask
 #' @param x an \code{ip4} object
+#' @param m a bit mask
+#' @export
+mask <- function(x, m) {
+    .Call('Rip46_mask', PACKAGE = 'Rip46', x, m)
+}
+
+#' @rdname network-mask
 #' @export
 classA <- function(x) {
     .Call('Rip46_classA', PACKAGE = 'Rip46', x)

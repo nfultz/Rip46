@@ -28,7 +28,7 @@ union un_int
 //'
 // [[Rcpp::export]]
 IntegerVector mySqlToIp4(NumericVector x) {
-  unsigned int u = 1L << 32;
+  unsigned int u = 1U << 31;
    IntegerVector ret(x.length());
    for(int i = 0; i < x.length(); i++) {
      if(R_IsNA(x[i])){
@@ -89,11 +89,17 @@ CharacterVector ip4ToHost(IntegerVector x) {
 
 }
 
-
-IntegerVector applyMask(IntegerVector x,  int mask) {
+//' Extract Networks from IP addresses
+//'
+//' @rdname network-mask
+//' @param x an \code{ip4} object
+//' @param m a bit mask
+//' @export
+// [[Rcpp::export]]
+IntegerVector mask(IntegerVector x,  int m) {
   IntegerVector ret(x.length()); 
    for(int i = 0; i < x.length(); i++)
-     ret[i] = mask & x[i];
+     ret[i] = m & x[i];
        
    ret.attr("class") = "ip4";
    return ret;
@@ -101,26 +107,23 @@ IntegerVector applyMask(IntegerVector x,  int mask) {
 }
 
 
-//' Extract Networks from IP addresses
-//'
 //' @rdname network-mask
-//' @param x an \code{ip4} object
 //' @export
 // [[Rcpp::export]]
 IntegerVector classA(IntegerVector x) {
-     return applyMask(x, 0x000000ff);
+     return mask(x, 0x000000ff);
 }
 
 //' @rdname network-mask 
 //' @export
 // [[Rcpp::export]]
 IntegerVector classB(IntegerVector x) {
-     return applyMask(x, 0x0000ffff);
+     return mask(x, 0x0000ffff);
 }
 
 //' @rdname network-mask
 //' @export
 // [[Rcpp::export]]
 IntegerVector classC(IntegerVector x) {
-     return applyMask(x, 0x00ffffff);
+     return mask(x, 0x00ffffff);
 }
