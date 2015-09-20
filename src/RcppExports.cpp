@@ -9,135 +9,99 @@ using namespace Rcpp;
 IntegerVector mySqlToIp4(NumericVector x);
 RcppExport SEXP Rip46_mySqlToIp4(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP );
-        IntegerVector __result = mySqlToIp4(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    __result = Rcpp::wrap(mySqlToIp4(x));
+    return __result;
 END_RCPP
 }
 // hostToIp4
 IntegerVector hostToIp4(CharacterVector x);
 RcppExport SEXP Rip46_hostToIp4(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
-        IntegerVector __result = hostToIp4(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    __result = Rcpp::wrap(hostToIp4(x));
+    return __result;
 END_RCPP
 }
 // ip4ToHost
 CharacterVector ip4ToHost(IntegerVector x);
 RcppExport SEXP Rip46_ip4ToHost(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        CharacterVector __result = ip4ToHost(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    __result = Rcpp::wrap(ip4ToHost(x));
+    return __result;
 END_RCPP
 }
 // mask
 IntegerVector mask(IntegerVector x, int m);
 RcppExport SEXP Rip46_mask(SEXP xSEXP, SEXP mSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< int >::type m(mSEXP );
-        IntegerVector __result = mask(x, m);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    __result = Rcpp::wrap(mask(x, m));
+    return __result;
 END_RCPP
 }
 // classA
 IntegerVector classA(IntegerVector x);
 RcppExport SEXP Rip46_classA(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        IntegerVector __result = classA(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    __result = Rcpp::wrap(classA(x));
+    return __result;
 END_RCPP
 }
 // classB
 IntegerVector classB(IntegerVector x);
 RcppExport SEXP Rip46_classB(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        IntegerVector __result = classB(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    __result = Rcpp::wrap(classB(x));
+    return __result;
 END_RCPP
 }
 // classC
 IntegerVector classC(IntegerVector x);
 RcppExport SEXP Rip46_classC(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP );
-        IntegerVector __result = classC(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    __result = Rcpp::wrap(classC(x));
+    return __result;
 END_RCPP
 }
 // hostToIp6
 ComplexVector hostToIp6(CharacterVector x);
 RcppExport SEXP Rip46_hostToIp6(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
-        ComplexVector __result = hostToIp6(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    __result = Rcpp::wrap(hostToIp6(x));
+    return __result;
 END_RCPP
 }
 // ip6ToHost
 CharacterVector ip6ToHost(ComplexVector x);
 RcppExport SEXP Rip46_ip6ToHost(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< ComplexVector >::type x(xSEXP );
-        CharacterVector __result = ip6ToHost(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< ComplexVector >::type x(xSEXP);
+    __result = Rcpp::wrap(ip6ToHost(x));
+    return __result;
 END_RCPP
 }

@@ -48,7 +48,6 @@ CharacterVector ip6ToHost(ComplexVector x) {
   CharacterVector ret(x.length());
   Rcomplex rc ;
 
-  struct in_addr s;
   for(int i = 0; i < x.length(); i++){
     rc = x(i);
     if(R_IsNA(rc.r)) {ret[i] = NA_STRING;} 

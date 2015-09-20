@@ -74,7 +74,6 @@ CharacterVector ip4ToHost(IntegerVector x) {
   
   CharacterVector ret(x.length());
 
-  struct in_addr s;
   for(int i = 0; i < x.length(); i++){
     buf.i = x[i];
     if(buf.i == NA_INTEGER) 
